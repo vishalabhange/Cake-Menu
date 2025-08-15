@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Slice Of Bliss — Menu</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ——— Bakery Chic Theme ——— */
+        :root {
+            --cream: #fff7f3;
+            --frost: #fffdf9;
+            --sugar: #ffe3ec;
+            --berry: #e11d48;
+            /* strawberry */
+            --cocoa: #7c3aed;
+            /* berry-cocoa accent */
+            --dough: #f59e0b;
+            /* golden crust */
+            --ink: #3b3b4f;
+            --line: #f0e7e3;
+            --card: #ffffff;
+            --shadow: 0 12px 30px rgba(203, 121, 149, 0.15), 0 2px 6px rgba(0, 0, 0, .04);
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            font-family: 'Nunito', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            background:
+                radial-gradient(24px 24px at 12% 8%, rgba(255, 209, 226, .7) 0 6px, transparent 7px) repeat,
+                radial-gradient(18px 18px at 86% 22%, rgba(255, 224, 178, .7) 0 5px, transparent 6px) repeat,
+                linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+            background-size: 180px 180px, 220px 220px, auto;
+        }
+
+        /* Top hero with scalloped edge */
+        .hero {
+            position: relative;
+            padding: 32px 18px 50px;
+            text-align: center;
+            background: linear-gradient(180deg, #ffe7ef 0%, #fff5e8 100%);
+            overflow: hidden;
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .05);
+        }
+
+        .hero:after {
+            content: "";
+            position: absolute;
+            inset: auto 0 -1px 0;
+            height: 34px;
+            /* scallops */
+            background:
+                radial-gradient(circle at 16px -10px, transparent 18px, #fff 19px) top left/32px 32px repeat-x,
+                linear-gradient(#fff, #fff) bottom/100% 18px no-repeat;
+        }
+
+        /* Welcome banner */
+        .welcome-banner {
+            background: linear-gradient(90deg, #ffdde1, #ee9ca7);
+            padding: 14px 20px;
+            text-align: center;
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(18px, 3vw, 28px);
+            color: white;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .welcome-banner:before,
+        .welcome-banner:after {
+            content: "✿";
+            font-size: 18px;
+            margin: 0 8px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .brand {
+            display: flex;
+            justify-content: center;
+            /* you can keep or remove; hero-content handles centering */
+            align-items: center;
+            gap: 10px;
+            width: auto;
+            /* <-- was 100% */
+            flex-shrink: 0;
+            /* keep logo size stable */
+        }
+
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            /* vertically centers text with logo */
+            justify-content: center;
+            /* centers whole block in hero */
+            gap: 50px;
+            /* space between logo and text */
+            flex-wrap: wrap;
+            /* allows stacking on small screens */
+            text-align: left;
+            /* keep text aligned left next to logo */
+        }
+
+        .logo-img {
+            height: 200px;
+            /* adjust to fit your header */
+            width: auto;
+            border-radius: 50%;
+            /* makes it a circle if logo is square */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            /* keeps logo clean if transparent PNG */
+            padding: 6px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .title {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(38px, 6vw, 60px);
+            margin: 18px 0 6px;
+            color: #c026d3;
+        }
+
+        .subtitle {
+            color: #7c6a70;
+            font-weight: 600;
+        }
+
+        .wrap {
+            max-width: 1200px;
+            margin: -52px auto 70px;
+            padding: 0 18px;
+        }
+
+        .menu-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .ribbon {
+            background: linear-gradient(90deg, var(--berry), #f43f5e);
+            color: #fff;
+            padding: 10px 16px;
+            font-weight: 800;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ribbon .tag {
+            background: rgba(255, 255, 255, .18);
+            border: 1px solid rgba(255, 255, 255, .35);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+        }
+
+        /* Grid list of items */
+        .items {
+            display: grid;
+            grid-template-columns: 1.2fr .9fr .9fr .7fr;
+        }
+
+        .head,
+        .row {
+            display: contents;
+        }
+
+        .cell {
+            padding: 18px 16px;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .head .cell {
+            font-weight: 800;
+            background: linear-gradient(180deg, #fff, #fffaf6);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .name {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-weight: 800;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: #fff7f9;
+            color: #9b1c45;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: #fff;
+        }
+
+        .chip.baked {
+            background: #fff4e6;
+            color: #8a4b00;
+        }
+
+        .chip.nobake {
+            background: #f7ecff;
+            color: #5b21b6;
+        }
+
+        .chip.slice {
+            background: #e6fff3;
+            color: #0f766e;
+        }
+
+        .price {
+            display: inline-flex;
+            min-width: 74px;
+            justify-content: center;
+            padding: 8px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: #fff;
+            font-weight: 800;
+        }
+
+        .na {
+            opacity: .45;
+            font-weight: 700;
+        }
+
+        /* Cute separators and footer */
+        .notes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 16px;
+            background: linear-gradient(180deg, #fff, #fffaf7);
+        }
+
+        .notes .pill {
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px dashed #f8c7d4;
+            background: #fff;
+        }
+
+        /* NEW: Thank-you and Orders sections */
+        .thanks-banner {
+            margin: 18px 18px 0;
+            border-radius: 16px;
+            padding: 16px 18px;
+            text-align: center;
+            font-weight: 800;
+            background:
+                radial-gradient(20px 20px at 10% 15%, rgba(255, 173, 201, .35) 0 12px, transparent 13px) repeat,
+                radial-gradient(20px 20px at 90% 30%, rgba(255, 224, 178, .35) 0 12px, transparent 13px) repeat,
+                linear-gradient(90deg, #fff5fa, #fffef6);
+            background-size: 140px 140px, 180px 180px, auto;
+            border: 1px solid var(--line);
+            color: #a61b3c;
+        }
+
+        .thanks-banner strong {
+            font-family: 'Pacifico', cursive;
+            font-weight: 400;
+        }
+
+        .order-panel {
+            margin: 14px 18px 22px;
+            padding: 18px;
+            border-radius: 18px;
+            border: 1px dashed #f8c7d4;
+            background:
+                radial-gradient(22px 22px at 20% 120%, rgba(255, 197, 224, .45) 0 15px, transparent 16px) repeat,
+                radial-gradient(18px 18px at 95% -10%, rgba(255, 224, 178, .55) 0 12px, transparent 13px) repeat,
+                linear-gradient(180deg, #fff, #fff7fb);
+            background-size: 160px 160px, 200px 200px, auto;
+            box-shadow: var(--shadow);
+        }
+
+        .order-panel h3 {
+            margin: 0 0 10px;
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(18px, 3.2vw, 26px);
+            color: #c026d3;
+        }
+
+        .order-panel p {
+            margin: 0 0 12px;
+            color: #7c6a70;
+            font-weight: 700;
+        }
+
+        /* Click-to-reveal Call / WhatsApp */
+        .contact-actions {
+            margin-top: 6px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .contact-actions summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 12px 14px;
+            font-weight: 800;
+            color: #9b1c45;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-actions summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .contact-actions summary:after {
+            content: \"▼\";
+            font-size: 12px;
+            opacity: .6;
+        }
+
+        .contact-actions[open] summary:after {
+            content: \"▲\";
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 12px;
+            border-top: 1px dashed var(--line);
+            background: linear-gradient(180deg, #fff, #fffaf7);
+        }
+
+        .btn {
+            text-decoration: none;
+            text-align: center;
+            font-weight: 800;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: #fff;
+            transition: transform .08s ease, box-shadow .08s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, .06);
+        }
+
+        .btn.call {
+            color: #8a4b00;
+            background: #fff4e6;
+        }
+
+        .btn.wa {
+            color: #065f46;
+            background: #e6fff3;
+        }
+
+        /* Mobile */
+        @media (max-width: 760px) {
+            .items {
+                grid-template-columns: 1fr;
+            }
+
+            .head {
+                display: none;
+            }
+
+            .row {
+                display: grid;
+                grid-template-columns: 1fr;
+                padding: 14px 12px;
+                border-bottom: 1px dashed var(--line);
+            }
+
+            .cell {
+                padding: 8px 12px;
+                border: 0;
+            }
+
+            .row .price-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                margin-top: 8px;
+            }
+
+            .price {
+                width: 100%;
+            }
+
+            .order-panel {
+                padding: 16px;
+            }
+        }
+
+        /* Pulse cupcake */
+        .pulse-indicator {
+            display: inline-block;
+            animation: bounce 1.2s infinite, pulse 2s infinite;
+            margin-right: 6px;
+        }
+
+        .tap-text {
+            font-weight: 800;
+            font-size: 1.05rem;
+            position: relative;
+            color: var(--berry);
+        }
+
+        .hint {
+            font-size: 0.85rem;
+            margin-left: 8px;
+            color: var(--dough);
+            font-style: italic;
+            animation: fadeSlide 2.5s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 0px rgba(225, 29, 72, 0.4);
+            }
+
+            50% {
+                text-shadow: 0 0 10px rgba(225, 29, 72, 0.8);
+            }
+
+            100% {
+                text-shadow: 0 0 0px rgba(225, 29, 72, 0.4);
+            }
+        }
+
+        @keyframes fadeSlide {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translateX(-4px);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="welcome-banner">
+        <span>🍓 Welcome to a world where every slice tells a story of sweetness 🍰</span>
+    </section>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="brand">
+                <img src="./A slice of joy in every bite_.jpg" alt="Slice Of Bliss Logo" class="logo-img">
+            </span>
+
+            <div class="hero-text">
+                <h1 class="title">Cheesecakes & More</h1>
+                <div class="subtitle">Eggless cheesecake lovers this is for <strong>you...</strong></div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="wrap">
+        <article class="menu-card">
+            <div class="ribbon">
+                Freshly whipped, slowly baked, lovingly served
+                <span class="tag">Baked</span>
+                <span class="tag">No-Bake</span>
+                <span class="tag">Slice</span>
+                <span class="tag" style="margin-left:auto;background:#fff;color:#e11d48">Limited Kitchen</span>
+            </div>
+
+            <!-- Desktop/Table Grid -->
+            <div class="items" role="table" aria-label="Bakery Menu">
+                <div class="head" role="row">
+                    <div class="cell" role="columnheader">Name</div>
+                    <div class="cell" role="columnheader">Baked (₹)</div>
+                    <div class="cell" role="columnheader">No-Bake (₹)</div>
+                    <div class="cell" role="columnheader">Slice (₹)</div>
+                </div>
+
+                <!-- Blueberry -->
+                <div class="row" role="row">
+                    <div class="cell name" role="cell">
+                        <span class="badge">Chef fav</span>
+                        <span>Blueberry Cheesecake</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">990</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
+                            class="price">1150</span></div>
+                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">160</span>
+                    </div>
+                </div>
+
+                <!-- Nutella -->
+                <div class="row" role="row">
+                    <div class="cell name" role="cell"><span class="badge"
+                            style="background:#fff4e6;color:#8a4b00">Rich</span> <span>Nutella Cheesecake</span></div>
+                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">1100</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
+                            class="price">1150</span></div>
+                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">160</span>
+                    </div>
+                </div>
+
+                <!-- Biscoff -->
+                <div class="row" role="row">
+                    <div class="cell name" role="cell"><span class="badge"
+                            style="background:#f7ecff;color:#5b21b6">Lotus</span> <span>Biscoff Cheesecake</span></div>
+                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">1200</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
+                            class="price">1300</span></div>
+                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">170</span>
+                    </div>
+                </div>
+
+                <!-- Basque -->
+                <div class="row" role="row">
+                    <div class="cell name" role="cell"><span class="badge"
+                            style="background:#ffe8f0;color:#9b1c45">Classic</span> <span>Burnt Basque Cheesecake</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">850</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span class="price">—</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">120</span>
+                    </div>
+                </div>
+
+                <!-- Strawberry -->
+                <div class="row" role="row">
+                    <div class="cell name" role="cell"><span class="badge"
+                            style="background:#ffe3ec;color:#a61b3c">Fresh</span> <span>Strawberry Cheesecake</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">980</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
+                            class="price">1150</span></div>
+                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">160</span>
+                    </div>
+                </div>
+
+                <!-- Tiramisu -->
+                <div class="row" role="row">
+                    <div class="cell name" role="cell"><span class="badge"
+                            style="background:#fff5e6;color:#8a4b00">Whole</span> <span>Tiramisu</span></div>
+                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">—</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span class="price">—</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">200</span>
+                    </div>
+                </div>
+
+                <!-- Chocolate Mousse -->
+                <div class="row" role="row">
+                    <div class="cell name" role="cell"><span class="badge"
+                            style="background:#e6fff3;color:#0f766e">Light</span> <span>Chocolate Mousse</span></div>
+                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">—</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span class="price">—</span>
+                    </div>
+                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">40</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes">
+                <span class="pill">🎉 Custom toppers available</span>
+                <span class="pill">📦 Pre-order 24 hours</span>
+            </div>
+
+            <!-- NEW: Thank you + Orders sections -->
+            <div class="thanks-banner">
+                Thank you for indulging with us — <strong>may your day be as delightful as our cheesecakes!</strong>
+            </div>
+
+            <section class="order-panel" aria-label="Orders">
+                <h3>Orders & Celebrations</h3>
+                <p>We accept orders for birthday cakes and party celebrations.</p>
+
+                <details class="contact-actions">
+                    <summary aria-label="Tap to contact">
+                        <span class="pulse-indicator">🧁</span>
+                        <span class="tap-text">📞 78209 67905</span>
+                        <span class="hint">← Tap to order!</span>
+                    </summary>
+                    <div class="actions">
+                        <a class="btn call" href="tel:+917820967905" aria-label="Call 7820967905">Call</a>
+                        <a class="btn wa"
+                            href="https://wa.me/917820967905?text=Hi%20Slice%20Of%20Bliss%2C%20I%27d%20like%20to%20order."
+                            target="_blank" rel="noopener" aria-label="WhatsApp 7820967905">WhatsApp</a>
+                    </div>
+                </details>
+            </section>
+
+            <!-- /NEW -->
+        </article>
+    </div>
+</body>
+
+</html>
