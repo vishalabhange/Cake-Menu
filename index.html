@@ -15,15 +15,12 @@
             --frost: #fffdf9;
             --sugar: #ffe3ec;
             --berry: #e11d48;
-            /* strawberry */
             --cocoa: #7c3aed;
-            /* berry-cocoa accent */
             --dough: #f59e0b;
-            /* golden crust */
             --ink: #3b3b4f;
             --line: #f0e7e3;
             --card: #ffffff;
-            --shadow: 0 12px 30px rgba(203, 121, 149, 0.15), 0 2px 6px rgba(0, 0, 0, .04);
+            --shadow: 0 12px 30px rgba(203, 121, 149, .15), 0 2px 6px rgba(0, 0, 0, .04);
             --radius: 22px;
         }
 
@@ -40,11 +37,13 @@
             margin: 0;
             color: var(--ink);
             font-family: 'Nunito', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-            background:
+            /* background:
                 radial-gradient(24px 24px at 12% 8%, rgba(255, 209, 226, .7) 0 6px, transparent 7px) repeat,
                 radial-gradient(18px 18px at 86% 22%, rgba(255, 224, 178, .7) 0 5px, transparent 6px) repeat,
                 linear-gradient(180deg, #fff 0%, var(--cream) 100%);
             background-size: 180px 180px, 220px 220px, auto;
+        } */
+            background-color: #fff;
         }
 
         /* Top hero with scalloped edge */
@@ -62,7 +61,6 @@
             position: absolute;
             inset: auto 0 -1px 0;
             height: 34px;
-            /* scallops */
             background:
                 radial-gradient(circle at 16px -10px, transparent 18px, #fff 19px) top left/32px 32px repeat-x,
                 linear-gradient(#fff, #fff) bottom/100% 18px no-repeat;
@@ -75,9 +73,9 @@
             text-align: center;
             font-family: 'Pacifico', cursive;
             font-size: clamp(18px, 3vw, 28px);
-            color: white;
+            color: #fff;
             letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
             position: relative;
         }
 
@@ -86,64 +84,54 @@
             content: "✿";
             font-size: 18px;
             margin: 0 8px;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, .85)
+        }
+
+        /* Hero content (logo + text side-by-side) */
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            text-align: left;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .brand {
             display: flex;
-            justify-content: center;
-            /* you can keep or remove; hero-content handles centering */
             align-items: center;
             gap: 10px;
             width: auto;
-            /* <-- was 100% */
-            flex-shrink: 0;
-            /* keep logo size stable */
-        }
-
-
-        .hero-content {
-            display: flex;
-            align-items: center;
-            /* vertically centers text with logo */
-            justify-content: center;
-            /* centers whole block in hero */
-            gap: 50px;
-            /* space between logo and text */
-            flex-wrap: wrap;
-            /* allows stacking on small screens */
-            text-align: left;
-            /* keep text aligned left next to logo */
+            flex-shrink: 0
         }
 
         .logo-img {
             height: 200px;
-            /* adjust to fit your header */
             width: auto;
             border-radius: 50%;
-            /* makes it a circle if logo is square */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            background-color: white;
-            /* keeps logo clean if transparent PNG */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+            background: #fff;
             padding: 6px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform .3s ease, box-shadow .3s ease;
         }
 
         .logo-img:hover {
             transform: scale(1.05) rotate(-2deg);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, .2)
         }
 
         .title {
             font-family: 'Pacifico', cursive;
             font-size: clamp(38px, 6vw, 60px);
             margin: 18px 0 6px;
-            color: #c026d3;
+            color: #c026d3
         }
 
         .subtitle {
             color: #7c6a70;
-            font-weight: 600;
+            font-weight: 600
         }
 
         .wrap {
@@ -261,7 +249,6 @@
             font-weight: 700;
         }
 
-        /* Cute separators and footer */
         .notes {
             display: flex;
             gap: 10px;
@@ -278,7 +265,7 @@
             background: #fff;
         }
 
-        /* NEW: Thank-you and Orders sections */
+        /* Thank-you + Orders */
         .thanks-banner {
             margin: 18px 18px 0;
             border-radius: 16px;
@@ -325,7 +312,6 @@
             font-weight: 700;
         }
 
-        /* Click-to-reveal Call / WhatsApp */
         .contact-actions {
             margin-top: 6px;
             border: 1px solid var(--line);
@@ -350,13 +336,13 @@
         }
 
         .contact-actions summary:after {
-            content: \"▼\";
+            content: "▼";
             font-size: 12px;
             opacity: .6;
         }
 
         .contact-actions[open] summary:after {
-            content: \"▲\";
+            content: "▲";
         }
 
         .actions {
@@ -394,8 +380,69 @@
             background: #e6fff3;
         }
 
+        /* order hint */
+        .pulse-indicator {
+            display: inline-block;
+            animation: bounce 1.2s infinite, pulse 2s infinite;
+            margin-right: 6px;
+        }
+
+        .tap-text {
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--berry);
+        }
+
+        .hint {
+            font-size: .85rem;
+            margin-left: 8px;
+            color: var(--dough);
+            font-style: italic;
+            animation: fadeSlide 2.5s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-4px)
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                text-shadow: 0 0 0 rgba(225, 29, 72, .4)
+            }
+
+            50% {
+                text-shadow: 0 0 10px rgba(225, 29, 72, .8)
+            }
+
+            100% {
+                text-shadow: 0 0 0 rgba(225, 29, 72, .4)
+            }
+        }
+
+        @keyframes fadeSlide {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: translateX(-4px)
+            }
+
+            50% {
+                opacity: 1;
+                transform: translateX(0)
+            }
+        }
+
         /* Mobile */
-        @media (max-width: 760px) {
+        @media (max-width:760px) {
             .items {
                 grid-template-columns: 1fr;
             }
@@ -432,66 +479,120 @@
             }
         }
 
-        /* Pulse cupcake */
-        .pulse-indicator {
-            display: inline-block;
-            animation: bounce 1.2s infinite, pulse 2s infinite;
-            margin-right: 6px;
+        @media (max-width: 760px) {
+
+            /* Single column list */
+            .items {
+                grid-template-columns: 1fr;
+            }
+
+            .head {
+                display: none;
+            }
+
+            .row {
+                display: grid;
+                grid-template-columns: 1fr;
+                padding: 12px;
+                border-bottom: 1px dashed var(--line);
+            }
+
+            /* First row: item name */
+            .cell.name {
+                padding: 6px 0;
+                font-size: 15px;
+                font-weight: 800;
+            }
+
+            /* Second row: all type-price pairs */
+            .type-price-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 6px;
+            }
+
+            /* Each type-price pair */
+            .type-price-pair {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                border: 1px solid var(--line);
+                padding: 4px 8px;
+                border-radius: 8px;
+                background: #fff;
+            }
+
+            .type-price-pair .chip {
+                font-size: 13px;
+                padding: 3px 6px;
+                white-space: nowrap;
+            }
+
+            .type-price-pair .price {
+                font-size: 13px;
+                padding: 3px 6px;
+                white-space: nowrap;
+                min-width: auto;
+            }
+
+            /* Ribbon scaling */
+            .ribbon {
+                padding: 8px 12px;
+                font-size: 14px;
+                flex-wrap: wrap;
+            }
+
+            .ribbon .tag {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
         }
 
-        .tap-text {
-            font-weight: 800;
-            font-size: 1.05rem;
-            position: relative;
+        @media (max-width: 500px) {
+
+            .type-price-pair .chip,
+            .type-price-pair .price {
+                font-size: 12px;
+                padding: 2px 5px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .contact-actions summary {
+                padding: 10px 12px;
+                /* Slightly smaller padding */
+                font-weight: 500;
+                /* Slightly lighter for readability */
+                font-size: 10px;
+                /* Scale down font size */
+                color: #9b1c45;
+                /* Keep brand color */
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                /* Add breathing room between text & icon */
+            }
+            .tap-text {
+            font-weight: 600;
+            font-size: 1rem;
             color: var(--berry);
         }
-
-        .hint {
-            font-size: 0.85rem;
-            margin-left: 8px;
-            color: var(--dough);
-            font-style: italic;
-            animation: fadeSlide 2.5s infinite;
         }
 
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
+        @media (max-width: 500px) {
+            .contact-actions summary {
+                font-size: 10px;
+                /* Smaller for tiny screens */
+                padding: 8px 10px;
+                /* Compact touch-friendly size */
             }
-
-            50% {
-                transform: translateY(-4px);
-            }
+            .tap-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--berry);
         }
-
-        @keyframes pulse {
-            0% {
-                text-shadow: 0 0 0px rgba(225, 29, 72, 0.4);
-            }
-
-            50% {
-                text-shadow: 0 0 10px rgba(225, 29, 72, 0.8);
-            }
-
-            100% {
-                text-shadow: 0 0 0px rgba(225, 29, 72, 0.4);
-            }
-        }
-
-        @keyframes fadeSlide {
-
-            0%,
-            100% {
-                opacity: 0;
-                transform: translateX(-4px);
-            }
-
-            50% {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
     </style>
 </head>
@@ -504,16 +605,15 @@
     <section class="hero">
         <div class="hero-content">
             <span class="brand">
-                <img src="./A slice of joy in every bite_.jpg" alt="Slice Of Bliss Logo" class="logo-img">
+                <img src="./A slice of joy in every bite_.jpg" alt="Slice Of Bliss Logo" class="logo-img"
+                    loading="lazy">
             </span>
-
             <div class="hero-text">
                 <h1 class="title">Cheesecakes & More</h1>
                 <div class="subtitle">Eggless cheesecake lovers this is for <strong>you...</strong></div>
             </div>
         </div>
     </section>
-
 
     <div class="wrap">
         <article class="menu-card">
@@ -525,7 +625,7 @@
                 <span class="tag" style="margin-left:auto;background:#fff;color:#e11d48">Limited Kitchen</span>
             </div>
 
-            <!-- Desktop/Table Grid -->
+            <!-- Menu grid header -->
             <div class="items" role="table" aria-label="Bakery Menu">
                 <div class="head" role="row">
                     <div class="cell" role="columnheader">Name</div>
@@ -534,93 +634,8 @@
                     <div class="cell" role="columnheader">Slice (₹)</div>
                 </div>
 
-                <!-- Blueberry -->
-                <div class="row" role="row">
-                    <div class="cell name" role="cell">
-                        <span class="badge">Chef fav</span>
-                        <span>Blueberry Cheesecake</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">990</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
-                            class="price">1150</span></div>
-                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">160</span>
-                    </div>
-                </div>
-
-                <!-- Nutella -->
-                <div class="row" role="row">
-                    <div class="cell name" role="cell"><span class="badge"
-                            style="background:#fff4e6;color:#8a4b00">Rich</span> <span>Nutella Cheesecake</span></div>
-                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">1100</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
-                            class="price">1150</span></div>
-                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">160</span>
-                    </div>
-                </div>
-
-                <!-- Biscoff -->
-                <div class="row" role="row">
-                    <div class="cell name" role="cell"><span class="badge"
-                            style="background:#f7ecff;color:#5b21b6">Lotus</span> <span>Biscoff Cheesecake</span></div>
-                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">1200</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
-                            class="price">1300</span></div>
-                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">170</span>
-                    </div>
-                </div>
-
-                <!-- Basque -->
-                <div class="row" role="row">
-                    <div class="cell name" role="cell"><span class="badge"
-                            style="background:#ffe8f0;color:#9b1c45">Classic</span> <span>Burnt Basque Cheesecake</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">850</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span class="price">—</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">120</span>
-                    </div>
-                </div>
-
-                <!-- Strawberry -->
-                <div class="row" role="row">
-                    <div class="cell name" role="cell"><span class="badge"
-                            style="background:#ffe3ec;color:#a61b3c">Fresh</span> <span>Strawberry Cheesecake</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">980</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span
-                            class="price">1150</span></div>
-                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">160</span>
-                    </div>
-                </div>
-
-                <!-- Tiramisu -->
-                <div class="row" role="row">
-                    <div class="cell name" role="cell"><span class="badge"
-                            style="background:#fff5e6;color:#8a4b00">Whole</span> <span>Tiramisu</span></div>
-                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">—</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span class="price">—</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">200</span>
-                    </div>
-                </div>
-
-                <!-- Chocolate Mousse -->
-                <div class="row" role="row">
-                    <div class="cell name" role="cell"><span class="badge"
-                            style="background:#e6fff3;color:#0f766e">Light</span> <span>Chocolate Mousse</span></div>
-                    <div class="cell" role="cell"><span class="chip baked">Baked</span> <span class="price">—</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip nobake">No-Bake</span> <span class="price">—</span>
-                    </div>
-                    <div class="cell" role="cell"><span class="chip slice">Slice</span> <span class="price">40</span>
-                    </div>
-                </div>
+                <!-- Rows will be injected here -->
+                <div id="menu-rows"></div>
             </div>
 
             <div class="notes">
@@ -628,7 +643,6 @@
                 <span class="pill">📦 Pre-order 24 hours</span>
             </div>
 
-            <!-- NEW: Thank you + Orders sections -->
             <div class="thanks-banner">
                 Thank you for indulging with us — <strong>may your day be as delightful as our cheesecakes!</strong>
             </div>
@@ -651,10 +665,56 @@
                     </div>
                 </details>
             </section>
-
-            <!-- /NEW -->
         </article>
     </div>
+
+    <script>
+        // ------- Data mapping (edit here only!) -------
+        const MENU = [
+            { name: "Blueberry Cheesecake", baked: 990, nobake: 1150, slice: 160, badge: { text: "Chef fav", color: "#9b1c45", bg: "#fff7f9" } },
+            { name: "Nutella Cheesecake", baked: 1100, nobake: 1150, slice: 160, badge: { text: "Rich", color: "#8a4b00", bg: "#fff4e6" } },
+            { name: "Biscoff Cheesecake", baked: 1200, nobake: 1300, slice: 170, badge: { text: "Lotus", color: "#5b21b6", bg: "#f7ecff" } },
+            { name: "Burnt Basque Cheesecake", baked: 850, nobake: null, slice: 120, badge: { text: "Classic", color: "#9b1c45", bg: "#ffe8f0" } },
+            { name: "Strawberry Cheesecake", baked: 980, nobake: 1150, slice: 160, badge: { text: "Fresh", color: "#a61b3c", bg: "#ffe3ec" } },
+            { name: "Tiramisu", baked: null, nobake: null, slice: 200, badge: { text: "Whole", color: "#8a4b00", bg: "#fff5e6" } },
+            { name: "Chocolate Mousse", baked: null, nobake: null, slice: 40, badge: { text: "Light", color: "#0f766e", bg: "#e6fff3" } },
+        ];
+
+        // helpers
+        const priceCell = (type, value) => {
+            const chipClass = type === 'baked' ? 'baked' : (type === 'nobake' ? 'nobake' : 'slice');
+            if (value === null || value === undefined || value === "—") {
+                return `
+          <div class="cell" role="cell">
+            <span class="chip ${chipClass}">${labelFor(type)}</span>
+            <span class="price">—</span>
+          </div>`;
+            }
+            return `
+        <div class="cell" role="cell">
+          <span class="chip ${chipClass}">${labelFor(type)}</span>
+          <span class="price">${value}</span>
+        </div>`;
+        };
+
+        const labelFor = (type) => type === 'baked' ? 'Baked' : type === 'nobake' ? 'No-Bake' : 'Slice';
+
+        const rowHtml = (item) => `
+      <div class="row" role="row">
+        <div class="cell name" role="cell">
+          ${item.badge ? `<span class="badge" style="background:${item.badge.bg};color:${item.badge.color}">${item.badge.text}</span>` : ""}
+          <span>${item.name}</span>
+        </div>
+        ${priceCell('baked', item.baked)}
+        ${priceCell('nobake', item.nobake)}
+        ${priceCell('slice', item.slice)}
+      </div>
+    `;
+
+        // render
+        const mount = document.getElementById('menu-rows');
+        mount.outerHTML = MENU.map(rowHtml).join('');
+    </script>
 </body>
 
 </html>
